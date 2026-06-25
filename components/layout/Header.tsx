@@ -175,8 +175,8 @@ export default function Header() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Button className="rounded-full text-xl text-white ">ورود</Button>
-          <Button className="rounded-full text-xl bg-[#FFD166] text-black hover:bg-[#FFC233]">
+          <Button className="rounded-full text-xl font">ورود</Button>
+          <Button className="rounded-full text-xl bg-secondary  text-black">
             ثبت نام
           </Button>
         </motion.div>

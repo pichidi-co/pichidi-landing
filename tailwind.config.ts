@@ -1,13 +1,18 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from "tailwindcss/defaultTheme";
 module.exports = {
   darkMode: ["class"],
-content: [
-   "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  "./app/(*)/**/*.{js,ts,jsx,tsx,mdx}", // 👈 Support route groups like (landing)
-  "./components/**/*.{js,ts,jsx,tsx,mdx}",
-],
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/(*)/**/*.{js,ts,jsx,tsx,mdx}", // 👈 Support route groups like (landing)
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
+      fontFamily: {
+        nozha: ["var(--font-digi-nozha)", ...defaultTheme.fontFamily.sans],
+        irYekan: ["var(----font-ir-yekan)", ...defaultTheme.fontFamily.sans],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -26,11 +31,11 @@ content: [
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          // foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          // foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
