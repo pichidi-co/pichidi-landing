@@ -10,8 +10,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        nozha: ["var(--font-digi-nozha)", ...defaultTheme.fontFamily.sans],
-        irYekan: ["var(----font-ir-yekan)", ...defaultTheme.fontFamily.sans],
+        // nozha: ["var(--font-digi-nozha)", ...defaultTheme.fontFamily.sans],
+        // irYekan: ["var(--font-ir-yekan)", ...defaultTheme.fontFamily.sans],
+
+        "ir-yekan": ["var(--font-ir-yekan)"],
+        nozha: ["var(--font-digi-nozha)"],
       },
       borderRadius: {
         lg: "var(--radius)",

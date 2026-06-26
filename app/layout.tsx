@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { digiNozha, irYekan } from "../lib/fonts";
+import { digiNozha, irYekan } from "@/lib/fonts";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${digiNozha.variable} ${irYekan.variable}`}>
+      <body className={` ${digiNozha.variable} ${irYekan.variable}  font-ir-yekan`}>
         {children}
       </body>
     </html>
