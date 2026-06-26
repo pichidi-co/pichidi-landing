@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { digiNozha, irYekan } from "@/lib/fonts";
-import "@/app/globals.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "پیچیدی | حضور و غیاب آنلاین",

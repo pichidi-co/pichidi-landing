@@ -1,4 +1,4 @@
-import Footer from "@/components/layout/Footer";
+import {Footer} from "@/components/layout/footer/index";
 import Header from "@/components/layout/Header";
 import NextTopLoader from "nextjs-toploader";
 

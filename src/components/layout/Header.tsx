@@ -124,7 +124,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Phone, Search, CheckCircle2, MessageCircle } from "lucide-react";
 import Image from "next/image";
-import Lego from "../../public/logos/IMG_7066 1.svg";
+import Lego from "../../../public/logos/IMG_7066 1.svg";
 
 export default function Header() {
   return (
@@ -175,7 +175,7 @@ export default function Header() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Button className="rounded-full text-xl font">ورود</Button>
+          <Button className="rounded-full text-xl ">ورود</Button>
           <Button className="rounded-full text-xl bg-secondary  text-black">
             ثبت نام
           </Button>
