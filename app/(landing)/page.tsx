@@ -1,6 +1,7 @@
 import HeroSection from "@/components/landing/HeroSection";
 import { FeaturesSection } from "@/components/landing/features";
 import { PricingSection } from "@/components/landing/pricing";
+import { FaqSection } from "@/components/landing/FAQ";
 import React from "react";
 
 const LandingPage = () => {
@@ -9,6 +10,7 @@ const LandingPage = () => {
       <HeroSection />
       <FeaturesSection />
       <PricingSection />
+      <FaqSection />
     </>
   );
 };
