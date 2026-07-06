@@ -14,6 +14,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       { text: "۱۰ کاربر", icon: CHECK_ICON },
       { text: "۱ گیگابایت فضا", icon: CHECK_ICON },
       { text: "پشتیبانی ایمیل", icon: CHECK_ICON },
+      { text: "۱ گیگابایت فضا", icon: CHECK_ICON },
     ],
     moreFeatures: [
       { text: "دسترسی به API پایه", icon: CHECK_ICON },
