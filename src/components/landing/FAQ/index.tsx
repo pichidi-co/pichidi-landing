@@ -1,3 +1,4 @@
+// components/landing/FAQ/index.tsx
 "use client";
 
 import { useState } from "react";
@@ -13,13 +14,11 @@ export function FaqSection() {
   };
 
   return (
-    <section className="w-full py-16">
-      <div className="container mx-auto px-4">
-        {/* هدر بخش */}
+    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
+      <div className="container mx-auto max-w-6xl px-3 sm:px-4 md:px-6">
         <FaqHeader />
 
-        {/* لیست سوالات */}
-        <div className="mx-auto max-w-7xl space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {faqData.map((item, index) => (
             <FaqItem
               key={item.id}

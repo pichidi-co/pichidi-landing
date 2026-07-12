@@ -22,14 +22,16 @@ export function FaqItem({ item, isOpen, onToggle }: FaqItemProps) {
     >
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between px-6 py-6 text-right cursor-pointer"
+        className="flex w-full items-center justify-between px-4 sm:px-5 md:px-6 py-4 sm:py-5 md:py-6 text-right cursor-pointer gap-3"
       >
-        <span>{item.question}</span>
-        <span className="ml-4 transition-transform duration-300">
+        <span className="text-sm sm:text-base md:text-lg font-medium flex-1">
+          {item.question}
+        </span>
+        <span className="flex-shrink-0 transition-transform duration-300">
           {isOpen ? (
-            <ChevronUp className="h-5 w-5 " />
+            <ChevronUp className="h-4 w-4 sm:h-5 sm:w-5" />
           ) : (
-            <ChevronDown className="h-5 w-5" />
+            <ChevronDown className="h-4 w-4 sm:h-5 sm:w-5" />
           )}
         </span>
       </button>
@@ -40,7 +42,9 @@ export function FaqItem({ item, isOpen, onToggle }: FaqItemProps) {
         }`}
       >
         <div className="overflow-hidden">
-          <p className="px-6 pb-6 text-base leading-relaxed ">{item.answer}</p>
+          <p className="px-4 sm:px-5 md:px-6 pb-4 sm:pb-5 md:pb-6 text-sm sm:text-base leading-relaxed">
+            {item.answer}
+          </p>
         </div>
       </div>
     </div>
