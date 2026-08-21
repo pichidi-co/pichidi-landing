@@ -16,9 +16,16 @@ interface SignUpFormValues {
 
 interface SignUpFormProps {
   onSuccess?: () => void;
+  /** distinguishes where this lead came from: "consultation" | "demo" | ... */
+  source?: string;
+  submitButtonText?: string;
 }
 
-export function SignUpForm({ onSuccess }: SignUpFormProps) {
+export function SignUpForm({
+  onSuccess,
+  source = "consultation",
+  submitButtonText = "ثبت نام",
+}: SignUpFormProps) {
   const {
     register,
     handleSubmit,
@@ -35,7 +42,7 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
       const res = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, source }),
       });
       const data = await res.json();
 
@@ -46,9 +53,9 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
       }
 
       setStatus("success");
-      setMessage("ثبت‌نام شما با موفقیت انجام شد!");
+      setMessage("درخواست شما با موفقیت ثبت شد!");
       reset();
-      if (onSuccess) setTimeout(onSuccess, 1100);
+      if (onSuccess) setTimeout(onSuccess, 700);
     } catch {
       setStatus("error");
       setMessage("ارتباط با سرور برقرار نشد.");
@@ -113,7 +120,7 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
           disabled={isSubmitting}
           className="w-full rounded-full h-12 bg-secondary text-primary font-bold text-base hover:bg-secondary/90"
         >
-          {isSubmitting ? "در حال ارسال..." : "ثبت نام"}
+          {isSubmitting ? "در حال ارسال..." : submitButtonText}
         </Button>
       </motion.div>
 

@@ -58,18 +58,13 @@ export default function Header() {
             )}
           </nav>
 
-          {/* Login / Register */}
-          <motion.div
-            className="flex bg-[#07437A] border-2 border-[#F6C86A] items-center rounded-full"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button className="rounded-full text-xl">ورود</Button>
+          {/* دکمه درخواست مشاوره */}
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               onClick={() => setOpen(true)}
-              className="rounded-full text-xl bg-secondary text-black"
+              className="rounded-full text-lg md:text-xl bg-secondary text-black px-6 md:px-8 border-2 border-[#F6C86A]"
             >
-              ثبت نام
+              درخواست مشاوره
             </Button>
           </motion.div>
 
@@ -84,7 +79,7 @@ export default function Header() {
         </div>
       </motion.header>
 
-      {/* Sign-up modal */}
+      {/* مودال درخواست مشاوره */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
           dir="rtl"
@@ -92,13 +87,17 @@ export default function Header() {
         >
           <DialogHeader>
             <DialogTitle className="text-white text-2xl text-center">
-              ثبت نام در پیچیدی
+              درخواست مشاوره رایگان
             </DialogTitle>
             <DialogDescription className="text-white/70 text-center">
               اطلاعات خود را وارد کنید تا کارشناسان ما با شما تماس بگیرند
             </DialogDescription>
           </DialogHeader>
-          <SignUpForm onSuccess={() => setOpen(false)} />
+          <SignUpForm
+            source="consultation"
+            submitButtonText="ثبت درخواست"
+            onSuccess={() => setOpen(false)}
+          />
         </DialogContent>
       </Dialog>
     </>
