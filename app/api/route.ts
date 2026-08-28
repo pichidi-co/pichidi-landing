@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { insertCustomer, getCustomerByPhone } from "@/lib/db";
+import { insertCustomer } from "@/lib/db";
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,12 +13,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "شماره موبایل معتبر نیست." }, { status: 400 });
     }
 
-    if (getCustomerByPhone(phoneNumber.trim())) {
-      return NextResponse.json(
-        { error: "این شماره موبایل قبلاً ثبت شده است." },
-        { status: 409 }
-      );
-    }
+    // if (getCustomerByPhone(phoneNumber.trim())) {
+    //   return NextResponse.json(
+    //     { error: "این شماره موبایل قبلاً ثبت شده است." },
+    //     { status: 409 }
+    //   );
+    // }
 
     const customer = insertCustomer({
       firstName: firstName.trim(),
