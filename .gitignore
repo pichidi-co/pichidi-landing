@@ -20,6 +20,11 @@
 # production
 /build
 
+# SQLite
+*.db
+*.db-shm
+*.db-wal
+
 # misc
 .DS_Store
 *.pem
