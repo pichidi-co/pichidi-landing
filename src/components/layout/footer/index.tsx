@@ -1,90 +1,269 @@
-// src/components/layout/footer/index.tsx
 "use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Instagram, Send, Facebook, Phone } from "lucide-react";
+import { Instagram, Send, Facebook, Phone, Mail, ArrowUp } from "lucide-react";
+
 import { FOOTER_COLUMNS, FOOTER_TEXT } from "@/components/constant/footer";
 import { FooterColumn } from "./FooterColumn";
-import { FooterBottom } from "./FooterBottom";
 
 export default function Footer() {
+  const socialLinks = [
+    { Icon: Instagram, label: "Instagram", href: "#" },
+    { Icon: Send, label: "Telegram", href: "#" },
+    { Icon: Facebook, label: "Facebook", href: "#" },
+  ];
+
   return (
-    <footer className="relative mt-24 bg-white overflow-hidden">
-      {/* Wave */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
-        <svg viewBox="0 0 1440 180" className="w-full h-[170px]" preserveAspectRatio="none">
+    <footer className="relative mt-32 overflow-hidden bg-[#062F5F] text-white">
+      {/* Top decorative wave */}
+      <div className="absolute -top-[1px] left-0 w-full overflow-hidden leading-[0]">
+        <svg
+          viewBox="0 0 1440 180"
+          preserveAspectRatio="none"
+          className="relative block h-[140px] w-full"
+        >
           <path
-            d="M0,90 C180,180 360,160 560,95 C760,30 980,0 1180,45 C1320,75 1400,120 1440,150 L1440,0 L0,0 Z"
+            d="
+              M0,110
+              C180,170 300,170 480,100
+              C660,30 780,30 960,100
+              C1140,170 1260,170 1440,100
+              L1440,0
+              L0,0
+              Z
+            "
             fill="white"
-            stroke="#0A4C8B"
-            strokeWidth="3"
           />
         </svg>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Brand + social */}
+      <div className="relative mx-auto max-w-7xl px-6 pt-36 pb-8">
+        {/* Main footer */}
+        <div className="grid grid-cols-1 gap-14 md:grid-cols-12 lg:gap-16">
+          {/* Brand */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col items-center"
+            className="md:col-span-4"
           >
-            <motion.div whileHover={{ scale: 1.06 }} transition={{ type: "spring", stiffness: 220 }}>
-              <Image src="/images/footer/bot.png" alt="" width={220} height={220} />
-            </motion.div>
+            <div className="flex flex-col items-center md:items-start">
+              <motion.div
+                whileHover={{ y: -5 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 250,
+                  damping: 18,
+                }}
+                className="relative mb-5"
+              >
+                <div className="absolute inset-0 rounded-full bg-white/10 blur-3xl" />
 
-            <p className="mt-4 text-center text-sm text-gray-500 max-w-xs">
-              {FOOTER_TEXT.brand} — سامانه هوشمند حضور و غیاب برای تیم‌های امروزی
-            </p>
+                <Image
+                  src="/images/footer/upscalemedia-transformed (2).png"
+                  alt="لوگو سامانه حضور و غیاب"
+                  width={300}
+                  height={300}
+                  className="relative h-auto w-[240px] object-contain"
+                />
+              </motion.div>
 
-            <div className="flex gap-4 mt-5">
-              {[Instagram, Send, Facebook].map((Icon, i) => (
-                <motion.a
-                  key={i}
-                  href="#"
-                  whileHover={{ scale: 1.15, backgroundColor: "#0A4C8B", color: "#fff" }}
-                  className="border-2 border-[#0A4C8B] rounded-full p-2 text-[#0A4C8B] transition"
-                >
-                  <Icon size={22} />
-                </motion.a>
-              ))}
+              <p className="max-w-sm text-center text-sm leading-7 text-white/65 md:text-right">
+                راهکاری ساده و مطمئن برای مدیریت حضور و غیاب و ارتباط بهتر با
+                مجموعه شما
+              </p>
+
+              {/* Social */}
+              <div className="mt-6 flex gap-3">
+                {socialLinks.map(({ Icon, href, label }) => (
+                  <motion.a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    whileHover={{
+                      y: -4,
+                      scale: 1.05,
+                    }}
+                    whileTap={{ scale: 0.92 }}
+                    className="
+                      flex
+                      h-11
+                      w-11
+                      items-center
+                      justify-center
+                      rounded-xl
+                      border
+                      border-white/10
+                      bg-white/5
+                      text-white/75
+                      transition-all
+                      hover:border-white/20
+                      hover:bg-white
+                      hover:text-[#062F5F]
+                    "
+                  >
+                    <Icon size={19} />
+                  </motion.a>
+                ))}
+              </div>
             </div>
           </motion.div>
 
-          {/* Link columns from constant/footer.ts */}
-          {FOOTER_COLUMNS.map((column, i) => (
-            <motion.div
-              key={column.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.15 * (i + 1) }}
-              className="text-center md:text-right"
-            >
-              <FooterColumn column={column} />
-            </motion.div>
-          ))}
+          {/* Links */}
+          <div className="grid grid-cols-2 gap-10 md:col-span-5">
+            {FOOTER_COLUMNS.map((column, i) => (
+              <motion.div
+                key={column.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.1 * i,
+                }}
+              >
+                <FooterColumn column={column} />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Contact */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="md:col-span-3"
+          >
+            <h3 className="mb-6 text-lg font-bold">ارتباط با ما</h3>
+
+            <div className="space-y-4">
+              <a
+                href="mailto:info@example.com"
+                className="
+                  group
+                  flex
+                  items-center
+                  gap-3
+                  rounded-2xl
+                  border
+                  border-white/10
+                  bg-white/5
+                  p-4
+                  transition-all
+                  hover:bg-white/10
+                "
+              >
+                <span
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-white/10
+                  "
+                >
+                  <Mail size={18} />
+                </span>
+
+                <div className="min-w-0">
+                  <p className="mb-1 text-xs text-white/45">ایمیل</p>
+
+                  <p className="truncate text-sm">info@example.com</p>
+                </div>
+              </a>
+
+              <a
+                href={`tel:${FOOTER_TEXT.phone}`}
+                className="
+                  group
+                  flex
+                  items-center
+                  gap-3
+                  rounded-2xl
+                  border
+                  border-white/10
+                  bg-white/5
+                  p-4
+                  transition-all
+                  hover:bg-white/10
+                "
+              >
+                <span
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-white/10
+                  "
+                >
+                  <Phone size={18} />
+                </span>
+
+                <div>
+                  <p className="mb-1 text-xs text-white/45">شماره تماس</p>
+
+                  <p dir="ltr" className="text-sm">
+                    {FOOTER_TEXT.phone}
+                  </p>
+                </div>
+              </a>
+            </div>
+          </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-10 flex justify-center items-center gap-2 text-[#0A4C8B]"
-        >
-          <Phone size={22} />
-          <span className="text-2xl font-semibold" dir="ltr">
-            {FOOTER_TEXT.phone}
-          </span>
-        </motion.div>
-      </div>
+        {/* Divider */}
+        <div className="my-10 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
-      <FooterBottom />
+        {/* Bottom */}
+        <div className="flex flex-col items-center justify-between gap-5 text-xs text-white/45 md:flex-row">
+          <p>© 1405 تمامی حقوق محفوظ است</p>
+
+          <div className="flex items-center gap-6">
+            <a href="#" className="transition-colors hover:text-white">
+              قوانین و مقررات
+            </a>
+
+            <a href="#" className="transition-colors hover:text-white">
+              حریم خصوصی
+            </a>
+
+            <button
+              onClick={() =>
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                })
+              }
+              className="
+                flex
+                h-9
+                w-9
+                items-center
+                justify-center
+                rounded-xl
+                border
+                border-white/10
+                transition-all
+                hover:bg-white
+                hover:text-[#062F5F]
+              "
+              aria-label="بازگشت به بالا"
+            >
+              <ArrowUp size={16} />
+            </button>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }
