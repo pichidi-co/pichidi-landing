@@ -158,7 +158,7 @@ export function AuthPanel() {
 
   return (
     <div>
-      <h2 className="text-center text-xl font-bold text-white sm:text-2xl">{titles[mode].t}</h2>
+      <h2 className="text-center font-nozha text-2xl text-white sm:text-3xl">{titles[mode].t}</h2>
       <p className="mt-1 text-center text-sm text-white/70">{titles[mode].s}</p>
       {info && <p className="mt-3 text-center text-sm font-medium text-secondary">{info}</p>}
 

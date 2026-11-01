@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { authFetch } from "../../client";
-import { authKeys } from "./queries";
-import type { AuthResponse, AuthSession, SendOtpResponse } from "./types";
+import { sessionOptions } from "./queries";
+import type { AuthResponse, SendOtpResponse } from "./types";
 
 const post = <T>(path: string, body?: unknown) =>
   authFetch<T>(path, { method: "POST", body: body ? JSON.stringify(body) : undefined });
@@ -10,7 +10,7 @@ const post = <T>(path: string, body?: unknown) =>
 function useSaveSession() {
   const qc = useQueryClient();
   return (res: AuthResponse) =>
-    qc.setQueryData<AuthSession | null>(authKeys.me, { role: res.role, user: res.user });
+    qc.setQueryData(sessionOptions.queryKey, { role: res.role, user: res.user });
 }
 
 export function useSendOtp() {
@@ -48,6 +48,6 @@ export function useLogout() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: () => post<{ success: boolean }>("/logout"),
-    onSettled: () => qc.setQueryData<AuthSession | null>(authKeys.me, null),
+    onSettled: () => qc.setQueryData(sessionOptions.queryKey, null),
   });
 }

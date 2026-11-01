@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ApiError, apiFetch } from "../../client";
-import { authKeys } from "../auth/queries";
-import type { AuthSession } from "../auth/types";
+import { sessionOptions } from "../auth/queries";
 import type { PurchasePayload, PurchaseResponse } from "./types";
 
 /** POST /customer/subscription/purchase  { planId } → redirects to the payment gateway */
@@ -25,7 +24,7 @@ export function usePurchasePlan() {
     onError: (err) => {
       // session expired → the checkout page falls back to the login step
       if (err instanceof ApiError && err.status === 401) {
-        qc.setQueryData<AuthSession | null>(authKeys.me, null);
+        qc.setQueryData(sessionOptions.queryKey, null);
       }
     },
   });

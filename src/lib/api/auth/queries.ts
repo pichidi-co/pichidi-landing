@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 import { ApiError, authFetch } from "../../client";
 import type { AuthResponse, AuthSession } from "./types";
 
@@ -28,11 +28,17 @@ async function fetchSession(): Promise<AuthSession | null> {
   }
 }
 
+/**
+ * queryOptions() gives the key a data type, so qc.setQueryData(sessionOptions.queryKey, …)
+ * is fully typed (AuthSession | null) without passing generics by hand.
+ */
+export const sessionOptions = queryOptions({
+  queryKey: authKeys.me,
+  queryFn: fetchSession,
+  staleTime: 60 * 1000,
+  retry: false,
+});
+
 export function useSession() {
-  return useQuery({
-    queryKey: authKeys.me,
-    queryFn: fetchSession,
-    staleTime: 60 * 1000,
-    retry: false,
-  });
+  return useQuery(sessionOptions);
 }

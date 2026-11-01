@@ -19,7 +19,7 @@ export function PayBox({ plan, session }: { plan: UiPlan; session: AuthSession }
 
   return (
     <div>
-      <h2 className="text-center text-xl font-bold text-white sm:text-2xl">تأیید و پرداخت</h2>
+      <h2 className="text-center font-nozha text-2xl text-white sm:text-3xl">تأیید و پرداخت</h2>
       <p className="mt-1 text-center text-sm text-white/70">
         بعد از تأیید، به درگاه امن پرداخت منتقل می‌شی.
       </p>
