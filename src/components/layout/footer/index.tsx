@@ -62,7 +62,7 @@ export default function Footer() {
                 <div className="absolute inset-0 rounded-full bg-white/10 blur-3xl" />
 
                 <Image
-                  src="/images/footer/upscalemedia-transformed (2).png"
+                  src="/images/charactor/pichidi-avatar-3.png"
                   alt="لوگو سامانه حضور و غیاب"
                   width={300}
                   height={300}

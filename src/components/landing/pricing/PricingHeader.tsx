@@ -5,7 +5,7 @@ interface PricingHeaderProps {
 
 export function PricingHeader({
   title = "تعرفه‌ها",
-  description = "طرح‌های مناسب برای هر نوع کسب‌وکار",
+  description = "پلن مناسب کسب‌وکارت را انتخاب کن",
 }: PricingHeaderProps) {
   return (
     <div className="mb-12 sm:mb-14 md:mb-16 text-center px-4">

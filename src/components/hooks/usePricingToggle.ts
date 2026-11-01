@@ -1,17 +1,28 @@
-import { useState } from "react";
+"use client";
+
+import { useMemo, useState } from "react";
+import { usePlans } from "@/lib/api/subscription/queries";
 import {
-  PRICING_PLANS,
-  PRICING_PLANS_YEARLY,
-} from "@/components/constant/pricing";
+  transformPlansToUi,
+  applyYearlyPrice,
+} from "@/lib/api/subscription/transformer";
 
 export function usePricingToggle() {
   const [isYearly, setIsYearly] = useState(false);
+  const { data: plans, isLoading, isError, refetch } = usePlans();
 
-  const plans = isYearly ? PRICING_PLANS_YEARLY : PRICING_PLANS;
+  const uiPlans = useMemo(() => {
+    if (!plans) return [];
+    const base = transformPlansToUi(plans);
+    return isYearly ? base.map(applyYearlyPrice) : base;
+  }, [plans, isYearly]);
 
   return {
     isYearly,
     setIsYearly,
-    plans,
+    plans: uiPlans,
+    isLoading,
+    isError,
+    refetch,
   };
 }

@@ -1,4 +1,3 @@
-// components/landing/pricing/PricingToggle.tsx
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -14,7 +13,9 @@ export function PricingToggle({ isYearly, onToggle }: PricingToggleProps) {
       <div
         className={cn(
           "absolute h-[60px] sm:h-[66px] md:h-[73px] w-[160px] sm:w-[185px] md:w-[207px] rounded-[40px] sm:rounded-[45px] md:rounded-[50px] bg-[#B0C6D9] transition-all duration-300 ease-in-out",
-          isYearly ? "left-[6px] sm:left-[7px]" : "left-[calc(100%-166px)] sm:left-[calc(100%-192px)] md:left-[calc(100%-214px)]",
+          isYearly
+            ? "left-[6px] sm:left-[7px]"
+            : "left-[calc(100%-166px)] sm:left-[calc(100%-192px)] md:left-[calc(100%-214px)]",
         )}
       />
 

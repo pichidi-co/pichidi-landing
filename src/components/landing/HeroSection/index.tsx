@@ -31,9 +31,9 @@ const HeroSection: React.FC = () => {
             ></div>
 
             {/* عکس */}
-            <div className="relative w-full h-full rounded-full overflow-hidden bg-white dark:bg-gray-900 z-10">
+            <div className="relative w-full h-full rounded-full overflow-hidden z-10">
               <Image
-                src="/images/charactor/IMG_7113 1 (3).png"
+                src="/images/charactor/pichidi-avatar-3.png"
                 alt="سامانه حضور و غیاب هوشمند"
                 fill
                 className="object-contain p-2"

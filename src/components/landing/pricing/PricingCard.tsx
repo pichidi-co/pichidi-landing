@@ -3,21 +3,27 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { PricingPlan } from "@/components/types/pricing";
+import type { UiPlan } from "@/lib/api/subscription/transformer";
 
-type PricingCardProps = PricingPlan & {
+interface PricingCardProps extends UiPlan {
+  onPurchase?: (planId: string) => void;
+  isPurchasing?: boolean;
   className?: string;
-};
+}
 
 export function PricingCard({
+  id,
   title,
   price,
   description,
+  durationLabel,
   features,
   moreFeatures = [],
   buttonText,
   isPopular,
   badge,
+  onPurchase,
+  isPurchasing,
   className,
 }: PricingCardProps) {
   const [showMore, setShowMore] = useState(false);
@@ -39,9 +45,14 @@ export function PricingCard({
     >
       {badge && (
         <div
-          className="absolute right-0 top-0 flex items-center justify-center rounded-bl-[30px] rounded-tr-[25px] sm:rounded-tr-[30px] bg-[#F6C86A] px-4 sm:px-5 md:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold text-primary"
+          className={cn(
+            "absolute right-0 top-0 flex items-center justify-center rounded-bl-[30px] rounded-tr-[25px] sm:rounded-tr-[30px] px-4 sm:px-5 md:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold",
+            isPopular
+              ? "bg-[#F6C86A] text-primary"
+              : "bg-[#07437A] text-white",
+          )}
           style={{
-            width: "140px",
+            minWidth: "120px",
             height: "44px",
             borderTopRightRadius: "25px",
             borderBottomLeftRadius: "40px",
@@ -58,24 +69,34 @@ export function PricingCard({
         <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-gray-500">
           {description}
         </p>
-        <div className="mt-3 sm:mt-4">
+        <div className="mt-3 sm:mt-4 flex items-baseline justify-center gap-1">
           <span className="text-3xl sm:text-4xl md:text-5xl font-bold">
             {price}
           </span>
-          <span className="text-xs sm:text-sm text-gray-500"> / ماه</span>
+          {price !== "رایگان" && (
+            <span className="text-xs sm:text-sm text-gray-500">
+              تومان / {durationLabel}
+            </span>
+          )}
         </div>
       </div>
 
       <ul className="mb-3 sm:mb-4 space-y-2.5 sm:space-y-3">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-start gap-2.5 sm:gap-3 text-gray-700">
+          <li
+            key={`${feature.key}-${index}`}
+            className="flex items-start gap-2.5 sm:gap-3 text-gray-700"
+          >
             <div className="mt-0.5 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0">
               <Image
                 src={feature.icon}
                 alt={feature.text}
                 width={16}
                 height={16}
-                className="h-4 w-4 sm:h-5 sm:w-5"
+                className={cn(
+                  "h-4 w-4 sm:h-5 sm:w-5",
+                  feature.iconVariant === "x" && "opacity-40",
+                )}
               />
             </div>
             <span className="text-xs sm:text-sm">{feature.text}</span>
@@ -115,14 +136,20 @@ export function PricingCard({
             )}
           >
             {moreFeatures.map((feature, index) => (
-              <li key={index} className="flex items-start gap-2.5 sm:gap-3 text-gray-600">
+              <li
+                key={`${feature.key}-more-${index}`}
+                className="flex items-start gap-2.5 sm:gap-3 text-gray-600"
+              >
                 <div className="mt-0.5 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0">
                   <Image
                     src={feature.icon}
                     alt={feature.text}
                     width={16}
                     height={16}
-                    className="h-4 w-4 sm:h-5 sm:w-5 opacity-70"
+                    className={cn(
+                      "h-4 w-4 sm:h-5 sm:w-5 opacity-70",
+                      feature.iconVariant === "x" && "opacity-30",
+                    )}
                   />
                 </div>
                 <span className="text-xs sm:text-sm">{feature.text}</span>
@@ -133,15 +160,18 @@ export function PricingCard({
       )}
 
       <button
+        onClick={() => onPurchase?.(id)}
+        disabled={isPurchasing}
         className={cn(
           "w-full rounded-full py-2.5 sm:py-3 font-semibold text-sm sm:text-base transition-all duration-300",
           isPopular
             ? "bg-primary text-secondary hover:bg-primary/90"
             : "border-2 border-primary text-primary hover:bg-primary hover:text-white",
           "mt-auto",
+          isPurchasing && "opacity-60 cursor-not-allowed",
         )}
       >
-        {buttonText}
+        {isPurchasing ? "در حال انتقال..." : buttonText}
       </button>
     </div>
   );
