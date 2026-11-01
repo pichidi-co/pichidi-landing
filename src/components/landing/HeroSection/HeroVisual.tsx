@@ -7,7 +7,7 @@ import { Bot, MapPin } from "lucide-react";
 /** Character image with a gentle float + two "live" chips that show what the product does. */
 export function HeroVisual() {
   return (
-    <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-[380px] md:h-[380px] lg:w-[450px] lg:h-[450px] xl:w-[522px] xl:h-[550px]">
+    <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-[380px] md:h-[380px] lg:w-[450px] lg:h-[450px] xl:w-[522px] xl:h-[550px] mt-10">
       <div
         className="absolute inset-0 rounded-full"
         style={{
@@ -20,10 +20,10 @@ export function HeroVisual() {
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="relative w-full h-full rounded-full overflow-hidden bg-white z-10"
+        className="relative w-full h-full rounded-full overflow-hidden "
       >
         <Image
-          src="/images/charactor/IMG_7113 1 (3).png"
+          src="/images/charactor/Cute Robot Mascot with Sparkles.png"
           alt="سامانه حضور و غیاب هوشمند"
           fill
           className="object-contain p-2"
