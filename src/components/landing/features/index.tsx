@@ -6,7 +6,7 @@ import { features } from "./data";
 
 export function FeaturesSection() {
   return (
-    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
+    <section id="features" className="w-full scroll-mt-28 py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         <div className="grid gap-5 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center">
           {features.map((feature, i) => (

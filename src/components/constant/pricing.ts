@@ -1,98 +1,82 @@
-import { PricingPlan } from "@/components/types/pricing";
+import type { BillingCycle, PricingPlan } from "@/components/types/pricing";
 
 const CHECK_ICON = "/icons/pricing/mdi_file-tick.svg";
-const X_ICON = "/icons/pricing/x.svg";
+const f = (text: string) => ({ text, icon: CHECK_ICON });
 
+// TODO: limits (تعداد نیرو / لوکیشن) are placeholders — set them to your real plan limits.
 export const PRICING_PLANS: PricingPlan[] = [
   {
-    id: 1,
+    id: "free",
     title: "طرح پایه",
-    price: "رایگان",
+    monthlyPrice: 0,
+    yearlyPrice: 0,
     description: "مناسب برای شروع کار",
     features: [
-      { text: "۵ پروژه فعال", icon: CHECK_ICON },
-      { text: "۱۰ کاربر", icon: CHECK_ICON },
-      { text: "۱ گیگابایت فضا", icon: CHECK_ICON },
-      { text: "پشتیبانی ایمیل", icon: CHECK_ICON },
-      { text: "۱ گیگابایت فضا", icon: CHECK_ICON },
+      f("تا ۵ نیرو"),
+      f("۱ لوکیشن"),
+      f("ثبت ورود و خروج با اپلیکیشن موبایل"),
+      f("گزارش‌های پایه"),
     ],
-    moreFeatures: [
-      { text: "دسترسی به API پایه", icon: CHECK_ICON },
-      { text: "پشتیبانی ۸ ساعته", icon: CHECK_ICON },
-      { text: "۱ دامنه اختصاصی", icon: CHECK_ICON },
-      { text: "گزارش‌های پایه", icon: CHECK_ICON },
-    ],
-    buttonText: "شروع کنید",
+    moreFeatures: [f("شیفت ثابت"), f("پنل مدیریت تحت وب"), f("پشتیبانی ایمیلی")],
+    buttonText: "شروع رایگان",
     isPopular: false,
     badge: null,
+    action: "signup",
   },
   {
-    id: 2,
+    id: "pro",
     title: "طرح حرفه‌ای",
-    price: "۲۹۹,۰۰۰",
-    description: "مناسب برای تیم‌های کوچک",
+    monthlyPrice: 299000,
+    yearlyPrice: 287000,
+    description: "مناسب برای تیم‌های در حال رشد",
     features: [
-      { text: "۵۰ پروژه فعال", icon: CHECK_ICON },
-      { text: "۱۰۰ کاربر", icon: CHECK_ICON },
-      { text: "۵۰ گیگابایت فضا", icon: CHECK_ICON },
-      { text: "پشتیبانی اولویت‌دار", icon: CHECK_ICON },
-      { text: "دسترسی به API", icon: CHECK_ICON },
+      f("تا ۵۰ نیرو"),
+      f("تا ۵ لوکیشن"),
+      f("شیفت ثابت، چرخشی و شناور"),
+      f("ثبت حضور با GPS و تشخیص چهره"),
+      f("گزارش‌های لحظه‌ای"),
     ],
     moreFeatures: [
-      { text: "دسترسی کامل به API", icon: CHECK_ICON },
-      { text: "پشتیبانی ۲۴ ساعته", icon: CHECK_ICON },
-      { text: "۵ دامنه اختصاصی", icon: CHECK_ICON },
-      { text: "گزارش‌های پیشرفته", icon: CHECK_ICON },
-      { text: "ابزارهای تحلیلی", icon: CHECK_ICON },
-      { text: "بکاپ خودکار", icon: CHECK_ICON },
+      f("مرخصی، مأموریت و اضافه‌کار"),
+      f("تحلیل حضور و غیاب با هوش مصنوعی"),
+      f("اپلیکیشن موبایل + پنل وب"),
+      f("پشتیبانی اولویت‌دار"),
     ],
     buttonText: "خرید اشتراک",
     isPopular: true,
     badge: "محبوب‌ترین",
+    action: "checkout",
   },
   {
-    id: 3,
+    id: "enterprise",
     title: "طرح سازمانی",
-    price: "۵۹۹,۰۰۰",
-    description: "مناسب برای سازمان‌ها",
+    monthlyPrice: 599000,
+    yearlyPrice: 575000,
+    description: "مناسب برای سازمان‌ها و چندشعبه‌ای‌ها",
     features: [
-      { text: "پروژه نامحدود", icon: CHECK_ICON },
-      { text: "کاربر نامحدود", icon: CHECK_ICON },
-      { text: "۲۰۰ گیگابایت فضا", icon: CHECK_ICON },
-      { text: "پشتیبانی ۲۴/۷", icon: CHECK_ICON },
-      { text: "دسترسی کامل به API", icon: CHECK_ICON },
+      f("نیروی نامحدود"),
+      f("لوکیشن نامحدود"),
+      f("همه امکانات طرح حرفه‌ای"),
+      f("گزارش‌های سفارشی"),
+      f("پشتیبانی اختصاصی"),
     ],
-    moreFeatures: [
-      { text: "دسترسی کامل به API", icon: CHECK_ICON },
-      { text: "پشتیبانی اختصاصی", icon: CHECK_ICON },
-      { text: "دامنه نامحدود", icon: CHECK_ICON },
-      { text: "گزارش‌های سفارشی", icon: CHECK_ICON },
-      { text: "ابزارهای تحلیلی پیشرفته", icon: CHECK_ICON },
-      { text: "بکاپ روزانه", icon: CHECK_ICON },
-      { text: "امنیت پیشرفته", icon: CHECK_ICON },
-      { text: "میزبانی اختصاصی", icon: CHECK_ICON },
-    ],
+    moreFeatures: [f("آموزش و راه‌اندازی تیم"), f("مشاوره پیاده‌سازی")],
     buttonText: "تماس بگیرید",
     isPopular: false,
     badge: "ویژه",
+    action: "consult",
   },
 ];
 
-export const PRICING_PLANS_YEARLY = [
-  {
-    ...PRICING_PLANS[0],
-    price: "رایگان",
-    description: "مناسب برای شروع کار - سالانه",
-  },
-  {
-    ...PRICING_PLANS[1],
-    price: "۲۸۷,۰۰۰",
-    description: "مناسب برای تیم‌های کوچک - سالانه",
-    badge: "محبوب‌ترین 🎉",
-  },
-  {
-    ...PRICING_PLANS[2],
-    price: "۵۷۵,۰۰۰",
-    description: "مناسب برای سازمان‌ها - سالانه",
-  },
-];
+export function getPlanById(id: string | null | undefined) {
+  return PRICING_PLANS.find((p) => p.id === id);
+}
+
+export function getUnitPrice(plan: PricingPlan, cycle: BillingCycle) {
+  return cycle === "yearly" ? plan.yearlyPrice : plan.monthlyPrice;
+}
+
+/** Total amount (Toman) actually charged at the gateway. Always computed server-side too. */
+export function getPlanAmount(plan: PricingPlan, cycle: BillingCycle) {
+  return cycle === "yearly" ? plan.yearlyPrice * 12 : plan.monthlyPrice;
+}

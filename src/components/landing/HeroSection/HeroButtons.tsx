@@ -2,18 +2,20 @@
 "use client";
 
 import React from "react";
+import { useConsult } from "@/components/providers/LandingProviders";
+import { scrollToId } from "@/lib/scroll";
 
 const HeroButtons: React.FC = () => {
-  const handleClick = (type: string) => {
-    console.log(`دکمه ${type} کلیک شد`);
-  };
+  const { openConsult } = useConsult();
+
+  const base =
+    "group relative px-4 sm:px-5 md:px-6 lg:px-8 py-2.5 sm:py-3 md:py-4 rounded-[30px] text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 flex items-center gap-2 md:gap-3 cursor-pointer w-[160px] sm:w-[190px] md:w-[220px] lg:w-[240px] justify-center";
 
   return (
-    <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6 justify-center md:justify-start items-center rtl">
-      {/* دکمه اول - درخواست دمو رایگان */}
+    <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6 justify-center md:justify-start items-center">
       <button
-        onClick={() => handleClick("demo")}
-        className="group relative bg-secondary px-4 sm:px-5 md:px-6 lg:px-8 py-2.5 sm:py-3 md:py-4 rounded-[30px] font-iranyekan text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 flex items-center gap-2 md:gap-3 cursor-pointer w-[160px] sm:w-[190px] md:w-[220px] lg:w-[240px] justify-center"
+        onClick={() => scrollToId("demo")}
+        className={base}
         style={{
           backgroundColor: "#FDD47B",
           border: "2px solid #FAC56E",
@@ -21,14 +23,12 @@ const HeroButtons: React.FC = () => {
         }}
       >
         <span className="whitespace-nowrap">درخواست دمو رایگان</span>
-        <span className="absolute inset-0 rounded-[30px] bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-yellow-600/50 group-hover:w-3/4 transition-all duration-300"></span>
+        <span className="absolute inset-0 rounded-[30px] bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </button>
 
-      {/* دکمه دوم - درخواست مشاوره رایگان */}
       <button
-        onClick={() => handleClick("consult")}
-        className="group relative bg-secondary px-4 sm:px-5 md:px-6 lg:px-8 py-2.5 sm:py-3 md:py-4 rounded-[30px] font-iranyekan text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 flex items-center gap-2 md:gap-3 cursor-pointer w-[160px] sm:w-[190px] md:w-[220px] lg:w-[240px] justify-center"
+        onClick={() => openConsult("consultation")}
+        className={base}
         style={{
           backgroundColor: "#FDD281",
           border: "2px solid #FAC56E",
@@ -36,8 +36,7 @@ const HeroButtons: React.FC = () => {
         }}
       >
         <span className="whitespace-nowrap">درخواست مشاوره رایگان</span>
-        <span className="absolute inset-0 rounded-[30px] bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-yellow-600/50 group-hover:w-3/4 transition-all duration-300"></span>
+        <span className="absolute inset-0 rounded-[30px] bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </button>
     </div>
   );

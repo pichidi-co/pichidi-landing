@@ -14,7 +14,7 @@ export function FaqSection() {
   };
 
   return (
-    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
+    <section id="faq" className="w-full scroll-mt-28 py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
       <div className="container mx-auto max-w-6xl px-3 sm:px-4 md:px-6">
         <FaqHeader />
 
