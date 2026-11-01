@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { apiFetch } from "../client";
+import { apiFetch } from "../../client";
 import type { PlansApiResponse } from "./types";
 
 export const subscriptionKeys = {
